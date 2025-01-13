@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
-import './Button.css';
 
 interface ButtonProps {
-  label?: string;
   onClick: () => void;
   children: ReactNode
 }

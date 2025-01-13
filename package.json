@@ -10,6 +10,7 @@
   ],
   "description": "UI module with CSS and React components",
   "version": "1.0.0",
+  "type": "module",
   "main": "dist/spudnova-ui.umd.js",
   "module": "dist/spudnova-ui.es.js",
   "types": "dist/index.d.ts",
@@ -32,5 +33,16 @@
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
     "vitest": "^2.1.8"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/spudnova-ui.es.js",
+      "require": "./dist/spudnova-ui.umd.js"
+    },
+    "./style.css": "./dist/spudnova-ui.css"
   }
 }
