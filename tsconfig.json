@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Type Declaration */
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true, 
+    "outDir": "dist",
+
+    /* Language and Environment */
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
+ 
+    /* Modules */
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+ 
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+ 
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src"],
+  "ts-node": { "transpileOnly": true }
+}
