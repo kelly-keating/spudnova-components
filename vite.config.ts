@@ -8,7 +8,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'UIModule',
-      fileName: (format) => `spudnova-ui.${format}.js`,
+      fileName: (format) => `components.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom'], // Exclude React from the bundle
