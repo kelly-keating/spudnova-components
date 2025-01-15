@@ -9,13 +9,14 @@
     "components"
   ],
   "description": "UI module with styled React components",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "main": "dist/spudnova-ui.umd.js",
   "module": "dist/spudnova-ui.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "vite build && npx tsc",
+    "publish": "npm publish --access=public",
     "test": "vitest"
   },
   "peerDependencies": {

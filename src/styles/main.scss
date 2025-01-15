@@ -1,5 +1,9 @@
-@use './components/Button.scss';
+@use 'themeVars' as *;
+
+@use '../components/elements/Button.scss';
+@use '../components/nav/Navbar.scss';
 
 body {
-  background-color: aqua;
+  background-color: $base-color;
+  color: $text-color;
 }

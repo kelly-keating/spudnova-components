@@ -1,0 +1,22 @@
+@use '../../styles/themeVars' as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  width: calc(100% - 20px);
+  min-height: 50px;
+
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  background-color: $second-color;
+  color: $text-color;
+
+  &-shadow {
+    box-shadow: 0 0 10px black;
+  }
+}
