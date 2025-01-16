@@ -6,13 +6,13 @@ interface NavbarProps {
   shadow?: boolean;
 }
 
-function Navbar ({ left, right, bgColor, color, shadow }: NavbarProps) {
+function Navbar({ left, right, bgColor, color, shadow }: NavbarProps) {
   return (
     <nav
-      className={shadow ? "navbar navbar-shadow" : "navbar"}
+      className={shadow ? 'navbar navbar-shadow' : 'navbar'}
       style={{
         backgroundColor: bgColor,
-        color: color,
+        color,
       }}
     >
       <div>{left}</div>
@@ -21,4 +21,4 @@ function Navbar ({ left, right, bgColor, color, shadow }: NavbarProps) {
   );
 }
 
-export default Navbar;	
+export default Navbar;
