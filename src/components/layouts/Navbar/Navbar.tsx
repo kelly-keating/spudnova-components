@@ -15,8 +15,8 @@ function Navbar({ left, right, bgColor, color, shadow }: NavbarProps) {
         color,
       }}
     >
-      <div>{left}</div>
-      <div>{right}</div>
+      <div className="navbar_left">{left}</div>
+      <div className="navbar_right">{right}</div>
     </nav>
   );
 }

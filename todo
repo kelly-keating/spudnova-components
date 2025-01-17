@@ -1,0 +1,19 @@
+<!-- ----- Testing ----- -->
+
+[ ] Performance (lighthouse, but investigate web vitals)
+[ ] WAVE, axe (can be integrated in testing, also cypress - how different?)
+[ ] Could stick w GH Actions, but CircleCI or Trav CI instead?
+[ ] Cypress for connective testing once bigger sections are up
+[ ] Consider if something like storybook would be fun or if we're just snapshotting
+
+<!-- ----- Components ----- -->
+
+[ ] Card
+[ ] Flex
+[ ] FlexGrid?
+[ ] Form
+[ ] Input
+[ ] Selector
+[ ] Submit
+[ ] Modal
+[ ] Menu (Burger/Expandables)
