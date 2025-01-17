@@ -1,9 +1,11 @@
+export type ButtonVariant = 'ghost' | 'danger' | 'primary' | 'success';
+
 interface ButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   submit?: boolean;
   onClick: () => void;
   disabled?: boolean;
-  variant?: 'ghost' | 'danger' | 'primary' | 'success';
+  variant?: ButtonVariant;
 }
 
 function Button({

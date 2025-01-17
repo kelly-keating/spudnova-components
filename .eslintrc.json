@@ -26,6 +26,7 @@
     "react/react-in-jsx-scope": "off", // No need to import React in JSX files with React 17+
     "import/prefer-default-export": "off",
     "no-console": "warn",
-    "react/require-default-props": 0
+    "react/require-default-props": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }

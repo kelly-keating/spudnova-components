@@ -1,7 +1,7 @@
 @use 'themeVars' as *;
 
-@use '../components/elements/Button.scss';
-@use '../components/nav/Navbar.scss';
+@use '../components/elements/Button/Button.scss';
+@use '../components/layouts/Navbar/Navbar.scss';
 
 body {
   background-color: $base-color;

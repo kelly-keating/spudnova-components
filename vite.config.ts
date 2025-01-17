@@ -6,7 +6,10 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: [
+        path.resolve(__dirname, 'src/index.ts'),
+        path.resolve(__dirname, 'src/styles/main.scss'),
+      ],
       name: 'UIModule',
       fileName: (format) => `components.${format}.js`,
     },
@@ -19,5 +22,9 @@ export default defineConfig({
         },
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
   },
 });
