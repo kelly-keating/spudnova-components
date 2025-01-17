@@ -15,7 +15,7 @@
   "module": "dist/spudnova-ui.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "vite build && npx tsc",
+    "build": "vite build && npx tsc --project tsconfig.build.json",
     "publish": "npm publish --access=public",
     "test": "vitest",
     "test:coverage": "vitest --coverage",

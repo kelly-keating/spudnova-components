@@ -27,6 +27,6 @@
     "allowImportingTsExtensions": true
   },
   "include": ["src"],
-  "exclude": ["**/*.test.ts", "**/*.test.tsx"],
+  // "exclude": ["**/*.test.ts", "**/*.test.tsx"], // breaks testing
   "ts-node": { "transpileOnly": true }
 }
