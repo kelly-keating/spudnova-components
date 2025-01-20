@@ -1,4 +1,5 @@
 interface NavbarProps {
+  className?: string;
   left?: React.ReactNode;
   right?: React.ReactNode;
   bgColor?: string;
@@ -6,10 +7,17 @@ interface NavbarProps {
   shadow?: boolean;
 }
 
-function Navbar({ left, right, bgColor, color, shadow }: NavbarProps) {
+function Navbar({
+  className,
+  left,
+  right,
+  bgColor,
+  color,
+  shadow,
+}: NavbarProps) {
   return (
     <nav
-      className={shadow ? 'navbar navbar-shadow' : 'navbar'}
+      className={`${className} navbar ${shadow ? 'navbar-shadow' : ''}`}
       style={{
         backgroundColor: bgColor,
         color,

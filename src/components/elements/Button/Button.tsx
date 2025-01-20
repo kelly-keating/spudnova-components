@@ -2,6 +2,7 @@ export type ButtonVariant = 'ghost' | 'danger' | 'primary' | 'success';
 
 interface ButtonProps {
   children?: React.ReactNode;
+  className?: string;
   submit?: boolean;
   onClick: () => void;
   disabled?: boolean;
@@ -10,17 +11,18 @@ interface ButtonProps {
 
 function Button({
   children,
+  className,
   submit = false,
   onClick,
   disabled,
-  variant,
+  variant = 'primary',
 }: ButtonProps) {
   return (
     <button
       type={submit ? 'submit' : 'button'}
       onClick={onClick}
       disabled={disabled}
-      className={variant ? `btn btn-${variant}` : 'btn'}
+      className={`${className} btn btn-${variant}`}
     >
       {children || 'Click Me!'}
     </button>
