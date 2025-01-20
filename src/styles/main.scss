@@ -1,8 +1,14 @@
+/* ----- Elements ----- */
 @use '../components/elements/Button/Button.scss';
+@use '../components/elements/VisuallyHidden/VisuallyHidden.scss';
+
+/* ----- Navbar ----- */
 @use '../components/layouts/Navbar/Navbar.scss';
 
 /* ----- Utils --> used last to overwrite those above ----- */
 @use './utils.scss';
+
+// Global Styling
 
 @use 'themeVars' as *;
 
