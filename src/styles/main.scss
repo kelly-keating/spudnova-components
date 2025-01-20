@@ -1,7 +1,10 @@
-@use 'themeVars' as *;
-
 @use '../components/elements/Button/Button.scss';
 @use '../components/layouts/Navbar/Navbar.scss';
+
+/* ----- Utils --> used last to overwrite those above ----- */
+@use './utils.scss';
+
+@use 'themeVars' as *;
 
 body {
   background-color: $base-color;
