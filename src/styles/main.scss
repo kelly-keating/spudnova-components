@@ -1,15 +1,20 @@
+/* ----- Blocks ----- */
+@use '../components/blocks/Navbar/Navbar.scss';
+@use '../components/blocks/Table/Table.scss';
+
 /* ----- Elements ----- */
 @use '../components/elements/Button/Button.scss';
+@use '../components/elements/Code/Code.scss';
 @use '../components/elements/VisuallyHidden/VisuallyHidden.scss';
 
-/* ----- Navbar ----- */
-@use '../components/layouts/Navbar/Navbar.scss';
+/* ----- Layouts ----- */
+@use '../components/layouts/FlexGrid/FlexGrid.scss';
 
-/* ----- Utils --> used last to overwrite those above ----- */
-@use './utils.scss';
+// ------------------
+// | Global Styling |
+// ------------------
 
-// Global Styling
-
+@use './utils.scss'; /* used here to overwrite imported styling above */
 @use 'themeVars' as *;
 
 body {

@@ -1,0 +1,20 @@
+@use '../../../styles/themeVars' as *;
+
+.SN-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+  text-align: left;
+
+  &_header,
+  &_data {
+    border: 2px solid $second-color;
+    padding: 8px;
+  }
+
+  &_header {
+    background-color: $second-color;
+    color: $base-color;
+    font-weight: bold;
+  }
+}

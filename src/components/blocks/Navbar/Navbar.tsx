@@ -8,7 +8,7 @@ interface NavbarProps {
 }
 
 function Navbar({
-  className,
+  className = '',
   left,
   right,
   bgColor,

@@ -11,7 +11,7 @@ interface ButtonProps {
 
 function Button({
   children,
-  className,
+  className = '',
   submit = false,
   onClick,
   disabled,
