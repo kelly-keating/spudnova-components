@@ -1,7 +1,8 @@
+import { PropsVoid } from '../../../models.ts';
+
 import VisuallyHidden from '../../elements/VisuallyHidden/VisuallyHidden.tsx';
 
-interface TableProps {
-  className?: string;
+interface TableProps extends PropsVoid {
   label: string;
   headers: string[];
   data: string[][];

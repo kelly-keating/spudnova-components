@@ -1,5 +1,6 @@
-interface NavbarProps {
-  className?: string;
+import { PropsVoid } from '../../../models.ts';
+
+interface NavbarProps extends PropsVoid {
   left?: React.ReactNode;
   right?: React.ReactNode;
   bgColor?: string;

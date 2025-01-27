@@ -1,11 +1,11 @@
-interface FlexGridProps {
-  children: React.ReactNode;
-}
+import { PropsBase } from '../../../models.ts';
+
+type FlexGridProps = PropsBase;
 
 // TODO: sort centering at small sizes
-function FlexGrid({ children }: FlexGridProps) {
+function FlexGrid({ children, className }: FlexGridProps) {
   return (
-    <div className="flex-grid" role="group">
+    <div className={`${className || ''} flex-grid`} role="group">
       {children}
     </div>
   );

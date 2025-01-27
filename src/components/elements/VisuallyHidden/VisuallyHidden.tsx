@@ -1,6 +1,6 @@
-interface VisuallyHiddenProps {
-  children: React.ReactNode;
-  className?: string;
+import { PropsBase } from '../../../models.ts';
+
+interface VisuallyHiddenProps extends PropsBase {
   as?: 'span' | 'div' | 'label';
 }
 

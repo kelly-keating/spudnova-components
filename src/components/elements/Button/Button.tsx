@@ -1,8 +1,8 @@
+import { PropsBase } from '../../../models.ts';
+
 export type ButtonVariant = 'ghost' | 'danger' | 'primary' | 'success';
 
-interface ButtonProps {
-  children?: React.ReactNode;
-  className?: string;
+interface ButtonProps extends PropsBase {
   submit?: boolean;
   onClick: () => void;
   disabled?: boolean;

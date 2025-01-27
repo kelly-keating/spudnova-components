@@ -1,6 +1,6 @@
-interface CodeProps {
-  children?: React.ReactNode;
-  className?: string;
+import { PropsMayBeVoid } from '../../../models.ts';
+
+interface CodeProps extends PropsMayBeVoid {
   codeLines?: string[];
 }
 

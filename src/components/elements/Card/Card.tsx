@@ -1,14 +1,13 @@
-import { ReactNode } from 'react';
+import { PropsVoid } from '../../../models.ts';
 
-interface CardProps {
-  className?: string;
-  header?: ReactNode;
+interface CardProps extends PropsVoid {
+  header?: React.ReactNode;
   titleImg?: {
     src: string;
     alt: string;
   };
-  content: ReactNode;
-  footer?: ReactNode;
+  content: React.ReactNode;
+  footer?: React.ReactNode;
 }
 
 function Card({ className, content, header, titleImg, footer }: CardProps) {
