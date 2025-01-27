@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 
 interface Theme {
-  primaryColor?: string;
-  secondaryColor?: string;
-  highlightColor?: string;
-  textColor?: string;
-  textAltColor?: string;
+  bgMain?: string;
+  bgLight?: string;
+  bgDark?: string;
+  textLight?: string;
+  textDark?: string;
+  highlight?: string;
+  highlightAlternative?: string;
 }
 
 interface SetterProps {
@@ -16,16 +18,21 @@ function ThemeSetter({ theme }: SetterProps) {
   useEffect(() => {
     const root = document.documentElement;
 
-    if (theme.primaryColor)
-      root.style.setProperty('--theme-color-base', theme.primaryColor);
-    if (theme.secondaryColor)
-      root.style.setProperty('--theme-color-secondary', theme.secondaryColor);
-    if (theme.highlightColor)
-      root.style.setProperty('--theme-color-highlight', theme.highlightColor);
-    if (theme.textColor)
-      root.style.setProperty('--theme-text-color', theme.textColor);
-    if (theme.textAltColor)
-      root.style.setProperty('--theme-text-alt', theme.textAltColor);
+    if (theme.bgMain) root.style.setProperty('--theme-bg-main', theme.bgMain);
+    if (theme.bgLight)
+      root.style.setProperty('--theme-bg-light', theme.bgLight);
+    if (theme.bgDark) root.style.setProperty('--theme-bg-dark', theme.bgDark);
+    if (theme.textLight)
+      root.style.setProperty('--theme-text-light', theme.textLight);
+    if (theme.textDark)
+      root.style.setProperty('--theme-text-dark', theme.textDark);
+    if (theme.highlight)
+      root.style.setProperty('--theme-highlight', theme.highlight);
+    if (theme.highlightAlternative)
+      root.style.setProperty(
+        '--theme-highlight-alt',
+        theme.highlightAlternative
+      );
   }, [theme]);
 
   return null;

@@ -1,21 +1,132 @@
 @use 'themeVars' as *;
 
-.col-1 {
-  background-color: $base-color;
+/* ----- Sizes ----- */
+
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
 }
 
-.col-2 {
-  background-color: $second-color;
+@mixin tablet {
+  @media (min-width: 769px) and (max-width: 1024px) {
+    @content;
+  }
 }
 
-.col-3 {
-  background-color: $highlight-color;
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
 }
 
-.text-1 {
-  color: $text-color;
+/* ----- Colors ----- */
+.bg-1 {
+  background-color: $bg-color;
 }
 
-.text-2 {
-  color: $text-alt;
+.bg-light {
+  background-color: $bg-light;
+}
+
+.bg-dark {
+  background-color: $bg-dark;
+}
+
+.bg-highlight {
+  background-color: $highlight;
+}
+
+.bg-highlight-alt {
+  background-color: $highlight-alt;
+}
+
+.text-light {
+  color: $text-light;
+}
+
+.text-dark {
+  color: $text-dark;
+}
+
+.text-highlight {
+  color: $highlight;
+}
+
+.text-highlight-alt {
+  color: $highlight-alt;
+}
+
+/* ----- Spacing ----- */
+
+.m-0 {
+  margin: 0;
+}
+
+.m-1 {
+  margin: $spacing-1;
+}
+
+.m-2 {
+  margin: $spacing-2;
+}
+
+.m-3 {
+  margin: $spacing-3;
+}
+
+.mx-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.mx-1 {
+  margin-left: $spacing-1;
+  margin-right: $spacing-1;
+}
+
+.mx-2 {
+  margin-left: $spacing-2;
+  margin-right: $spacing-2;
+}
+
+.mx-3 {
+  margin-left: $spacing-3;
+  margin-right: $spacing-3;
+}
+
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.my-1 {
+  margin-top: $spacing-1;
+  margin-bottom: $spacing-1;
+}
+
+.my-2 {
+  margin-top: $spacing-2;
+  margin-bottom: $spacing-2;
+}
+
+.my-3 {
+  margin-top: $spacing-3;
+  margin-bottom: $spacing-3;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.p-1 {
+  padding: $spacing-1;
+}
+
+.p-2 {
+  padding: $spacing-2;
+}
+
+.p-3 {
+  padding: $spacing-3;
 }

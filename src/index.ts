@@ -4,6 +4,7 @@ export { default as Navbar } from './components/blocks/Navbar/Navbar.tsx';
 
 /* ----- Elements ----- */
 export { default as Button } from './components/elements/Button/Button.tsx';
+export { default as Card } from './components/elements/Card/Card.tsx';
 export { default as Code } from './components/elements/Code/Code.tsx';
 export { default as VisuallyHidden } from './components/elements/VisuallyHidden/VisuallyHidden.tsx';
 

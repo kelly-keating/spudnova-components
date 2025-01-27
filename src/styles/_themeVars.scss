@@ -1,6 +1,13 @@
-$base-color: var(--theme-color-base, #242629);
-$second-color: var(--theme-color-secondary, #141414);
-$highlight-color: var(--theme-color-highlight, #99ddcb);
+$bg-color: var(--theme-bg-main, #242629);
+$bg-light: var(--theme-bg-light, #f5f5f5);
+$bg-dark: var(--theme-bg-dark, #141414);
 
-$text-color: var(--theme-text-color, #c6c6c6);
-$text-alt: var(--theme-text-alt, #99ddcb);
+$highlight: var(--theme-highlight, #99ddcb);
+$highlight-alt: var(--theme-highlight-alt, #f0664d);
+
+$text-light: var(--theme-text-light, #c6c6c6);
+$text-dark: var(--theme-text-dark, #141414);
+
+$spacing-1: 8px;
+$spacing-2: 16px;
+$spacing-3: 24px;

@@ -18,6 +18,6 @@
 @use 'themeVars' as *;
 
 body {
-  background-color: $base-color;
-  color: $text-color;
+  background-color: $bg-color;
+  color: $text-light;
 }

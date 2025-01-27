@@ -13,8 +13,8 @@
   display: flex;
   justify-content: space-between;
 
-  background-color: $second-color;
-  color: $text-color;
+  background-color: $highlight;
+  color: $text-dark;
 
   &-shadow {
     box-shadow: 0 0 10px black;
