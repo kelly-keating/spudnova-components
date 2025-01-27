@@ -12,6 +12,7 @@ const documentedComponents = [
   'Button',
 
   // Layouts
+  'FlexGrid',
 
   // Utilities
   'ThemeSetter',
