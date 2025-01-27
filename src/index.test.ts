@@ -3,7 +3,19 @@ import * as components from './index.ts';
 type exportName = keyof typeof components;
 const keys = Object.keys(components) as exportName[];
 
-const documentedComponents = ['ThemeSetter', 'Button', 'Navbar'];
+const documentedComponents = [
+  // Blocks
+  'Navbar',
+  'Table',
+
+  // Elements
+  'Button',
+
+  // Layouts
+
+  // Utilities
+  'ThemeSetter',
+];
 
 describe('UI Module', () => {
   describe('exports all documented components', () => {
