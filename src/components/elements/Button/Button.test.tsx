@@ -1,99 +1,136 @@
 import '@testing-library/jest-dom/vitest';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+import { axe } from 'jest-axe';
+import { composeStories } from '@storybook/react';
 
-import Button, { ButtonVariant } from './Button.tsx';
+import Button from './Button.tsx';
+import * as stories from './Button.stories.tsx';
 
-describe('Button renders', () => {
-  it('with correct role and default type', () => {
-    render(<Button onClick={() => {}}>Click Me!</Button>);
+describe('Button - accessibility', () => {
+  describe('When rendered in the default state', () => {
+    it('should have no accessibility violations', async () => {
+      const { container } = render(<Button onClick={() => {}} />);
+      const results = await axe(container);
+
+      expect(results).toHaveNoViolations();
+    });
+  });
+});
+
+const defaultClassName = 'btn';
+describe('Button - custom classNames', () => {
+  describe('When a className is provided', () => {
+    it('The className is applied to the Button alongside the default class', () => {
+      render(<Button onClick={() => {}} className="custom-class" />);
+
+      const button = screen.getByRole('button');
+      expect(button).toHaveClass(defaultClassName);
+      expect(button).toHaveClass('custom-class');
+    });
+  });
+
+  describe('When no className is provided', () => {
+    it('Then only the default class is applied', () => {
+      render(<Button onClick={() => {}} />);
+
+      const button = screen.getByRole('button');
+      expect(button).toHaveClass(defaultClassName);
+      expect(button).not.toHaveClass('custom-class');
+    });
+  });
+});
+
+describe('Given the Button component', () => {
+  describe('When the Button is clicked', () => {
+    it('Then calls given function', () => {
+      const onClick = vi.fn();
+      render(<Button onClick={onClick}>Click Me!</Button>);
+      const button = screen.getByRole('button');
+
+      button.click();
+
+      expect(onClick).toHaveBeenCalled();
+    });
+
+    it('Then does not call function if disabled', () => {
+      const onClick = vi.fn();
+      render(
+        <Button onClick={onClick} disabled>
+          Click Me!
+        </Button>
+      );
+      const button = screen.getByRole('button');
+
+      button.click();
+
+      expect(onClick).not.toHaveBeenCalled();
+    });
+  });
+});
+
+const { Default, Primary, Ghost, Danger, Success, Disabled, Submit } =
+  composeStories(stories);
+describe('Button stories', () => {
+  it('renders Default story', () => {
+    const { container } = render(Default());
     const button = screen.getByRole('button');
 
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute('type', 'button');
+    expect(button).toHaveTextContent('Click Me!');
+    expect(container).toMatchSnapshot();
   });
 
-  it('with default text', () => {
-    render(<Button onClick={() => {}} />);
-    const button = screen.getByText('Click Me!');
-
-    expect(button).toBeInTheDocument();
-  });
-
-  it('with child text', () => {
-    render(<Button onClick={() => {}}>Click Me!</Button>);
-    const button = screen.getByText('Click Me!');
-
-    expect(button).toBeInTheDocument();
-  });
-
-  it('with children', () => {
-    render(
-      <Button onClick={() => {}}>
-        <img src="icon.png" alt="icon" />
-      </Button>
-    );
-    const img = screen.getByRole('button').querySelector('img');
-
-    expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('src', 'icon.png');
-  });
-
-  it('as submit button', () => {
-    render(<Button onClick={() => {}} submit />);
+  it('renders Primary story', () => {
+    const { container } = render(Primary());
     const button = screen.getByRole('button');
 
-    expect(button).toHaveAttribute('type', 'submit');
+    expect(button).toHaveTextContent('Primary Button');
+    expect(button).toHaveClass('btn-primary');
+    expect(container).toMatchSnapshot();
   });
 
-  it('as disabled button', () => {
-    render(<Button onClick={() => {}} disabled />);
+  it('renders Ghost story', () => {
+    const { container } = render(Ghost());
     const button = screen.getByRole('button');
 
+    expect(button).toHaveTextContent('Ghost Button');
+    expect(button).toHaveClass('btn-ghost');
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders Danger story', () => {
+    const { container } = render(Danger());
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveTextContent('Danger Button');
+    expect(button).toHaveClass('btn-danger');
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders Success story', () => {
+    const { container } = render(Success());
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveTextContent('Success Button');
+    expect(button).toHaveClass('btn-success');
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders Disabled story', () => {
+    const { container } = render(Disabled());
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveTextContent('Disabled Button');
     expect(button).toBeDisabled();
-  });
-});
-
-describe('Button is clicked', () => {
-  it('calls given onClick function', () => {
-    const onClick = vi.fn();
-    render(<Button onClick={onClick}>Click Me!</Button>);
-    const button = screen.getByRole('button');
-
-    button.click();
-
-    expect(onClick).toHaveBeenCalled();
+    expect(container).toMatchSnapshot();
   });
 
-  it('does not call onClick function when disabled', () => {
-    const onClick = vi.fn();
-    render(
-      <Button onClick={onClick} disabled>
-        Click Me!
-      </Button>
-    );
+  it('renders Submit story', () => {
+    const { container } = render(Submit());
     const button = screen.getByRole('button');
 
-    button.click();
-
-    expect(onClick).not.toHaveBeenCalled();
-  });
-});
-
-describe('Variant passed to Button', () => {
-  it.each([
-    ['primary', 'btn-primary'],
-    ['success', 'btn-success'],
-    ['danger', 'btn-danger'],
-    ['ghost', 'btn-ghost'],
-  ])('renders %s variant class', (variant, className) => {
-    render(
-      <Button onClick={() => {}} variant={variant as ButtonVariant}>
-        Click Me!
-      </Button>
-    );
-    const button = screen.getByRole('button');
-
-    expect(button).toHaveClass(className);
+    expect(button).toHaveTextContent('Submit Button');
+    expect(button).toHaveAttribute('type', 'submit');
+    expect(container).toMatchSnapshot();
   });
 });

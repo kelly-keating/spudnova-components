@@ -1,6 +1,6 @@
 import { PropsBase } from '../../../models.ts';
 
-type FlexGridProps = PropsBase;
+export type FlexGridProps = PropsBase;
 
 // TODO: sort centering at small sizes
 function FlexGrid({ children, className }: FlexGridProps) {

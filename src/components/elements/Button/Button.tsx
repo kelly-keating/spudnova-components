@@ -1,8 +1,8 @@
-import { PropsBase } from '../../../models.ts';
+import { PropsMayBeVoid } from '../../../models.ts';
 
 export type ButtonVariant = 'ghost' | 'danger' | 'primary' | 'success';
 
-interface ButtonProps extends PropsBase {
+export interface ButtonProps extends PropsMayBeVoid {
   submit?: boolean;
   onClick: () => void;
   disabled?: boolean;
@@ -22,7 +22,7 @@ function Button({
       type={submit ? 'submit' : 'button'}
       onClick={onClick}
       disabled={disabled}
-      className={`${className} btn btn-${variant}`}
+      className={`${className || ''} btn ${variant ? `btn-${variant}` : ''}`}
     >
       {children || 'Click Me!'}
     </button>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-interface Theme {
+export interface Theme {
   bgMain?: string;
   bgLight?: string;
   bgDark?: string;

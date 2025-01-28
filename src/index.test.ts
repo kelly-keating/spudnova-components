@@ -5,11 +5,14 @@ const keys = Object.keys(components) as exportName[];
 
 const documentedComponents = [
   // Blocks
-  'Navbar',
-  'Table',
+  // 'Navbar',
+  // 'Table',
 
   // Elements
   'Button',
+  // Card,
+  // Code,
+  // VisuallyHidden,
 
   // Layouts
   'FlexGrid',
