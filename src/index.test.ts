@@ -11,7 +11,7 @@ const documentedComponents = [
   // Elements
   'Button',
   // Card,
-  // Code,
+  'Code',
   'VisuallyHidden',
 
   // Layouts
