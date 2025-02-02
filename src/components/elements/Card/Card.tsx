@@ -1,6 +1,6 @@
 import { PropsVoid } from '../../../models.ts';
 
-interface CardProps extends PropsVoid {
+export interface CardProps extends PropsVoid {
   header?: React.ReactNode;
   titleImg?: {
     src: string;
@@ -12,7 +12,7 @@ interface CardProps extends PropsVoid {
 
 function Card({ className, content, header, titleImg, footer }: CardProps) {
   return (
-    <div className={`${className || ''} card`}>
+    <div className={`${className || ''} card`} role="group">
       {header && <div className="card_header">{header}</div>}
       {titleImg && (
         <img className="card_image" src={titleImg.src} alt={titleImg.alt} />

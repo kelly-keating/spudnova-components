@@ -10,7 +10,7 @@ const documentedComponents = [
 
   // Elements
   'Button',
-  // Card,
+  'Card',
   'Code',
   'VisuallyHidden',
 
