@@ -1,6 +1,6 @@
 import { PropsBase } from '../../../models.ts';
 
-interface VisuallyHiddenProps extends PropsBase {
+export interface VisuallyHiddenProps extends PropsBase {
   as?: 'span' | 'div' | 'label';
 }
 

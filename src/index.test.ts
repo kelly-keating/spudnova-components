@@ -12,7 +12,7 @@ const documentedComponents = [
   'Button',
   // Card,
   // Code,
-  // VisuallyHidden,
+  'VisuallyHidden',
 
   // Layouts
   'FlexGrid',
