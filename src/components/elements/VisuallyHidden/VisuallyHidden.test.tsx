@@ -46,46 +46,82 @@ describe('VisuallyHidden - custom classNames', () => {
 
 const { Default, SpanElement, DivElement, LabelElement, ComplexContent } =
   composeStories(stories);
-describe('Given the VisuallyHidden component', () => {
-  describe('When the VisuallyHidden is rendered', () => {
-    it('Then it renders the default VisuallyHidden', () => {
+describe('VisuallyHidden stories', () => {
+  describe('When the VisuallyHidden is rendered with default props', () => {
+    it('Then the text is still rendered', () => {
       render(<Default />);
       const visuallyHidden = screen.getByText('Hidden Text');
 
       expect(visuallyHidden).toBeInTheDocument();
+      expect(visuallyHidden).toBeVisible();
     });
 
-    it('Then it renders the VisuallyHidden with a span element', () => {
+    it('Then the text is in a span', () => {
+      render(<Default />);
+      const visuallyHidden = screen.getByText('Hidden Text');
+
+      expect(visuallyHidden.tagName).toBe('SPAN');
+    });
+  });
+
+  describe('When the VisuallyHidden is defined as a span', () => {
+    it('Then the text is still rendered', () => {
       render(<SpanElement />);
       const visuallyHidden = screen.getByText('Hidden Text');
 
       expect(visuallyHidden).toBeInTheDocument();
-      expect(visuallyHidden.tagName).toBe('SPAN');
+      expect(visuallyHidden).toBeVisible();
     });
 
-    it('Then it renders the VisuallyHidden with a div element', () => {
+    it('Then the text is in a span', () => {
+      render(<SpanElement />);
+      const visuallyHidden = screen.getByText('Hidden Text');
+
+      expect(visuallyHidden.tagName).toBe('SPAN');
+    });
+  });
+
+  describe('When the VisuallyHidden is defined as a div', () => {
+    it('Then the text is still rendered', () => {
       render(<DivElement />);
       const visuallyHidden = screen.getByText('Hidden Text');
 
       expect(visuallyHidden).toBeInTheDocument();
-      expect(visuallyHidden.tagName).toBe('DIV');
+      expect(visuallyHidden).toBeVisible();
     });
 
-    it('Then it renders the VisuallyHidden with a label element', () => {
+    it('Then the text is in a div', () => {
+      render(<DivElement />);
+      const visuallyHidden = screen.getByText('Hidden Text');
+
+      expect(visuallyHidden.tagName).toBe('DIV');
+    });
+  });
+
+  describe('When the VisuallyHidden is defined as a label', () => {
+    it('Then the text is still rendered', () => {
       render(<LabelElement />);
       const visuallyHidden = screen.getByText('Hidden Text');
 
       expect(visuallyHidden).toBeInTheDocument();
-      expect(visuallyHidden.tagName).toBe('LABEL');
+      expect(visuallyHidden).toBeVisible();
     });
 
-    it('Then it renders the VisuallyHidden with complex content', () => {
-      render(<ComplexContent />);
+    it('Then the text is in a label', () => {
+      render(<LabelElement />);
       const visuallyHidden = screen.getByText('Hidden Text');
-      const button = screen.getByRole('button');
 
-      expect(visuallyHidden).toBeInTheDocument();
+      expect(visuallyHidden.tagName).toBe('LABEL');
+    });
+  });
+
+  describe('When the VisuallyHidden is rendered with complex content', () => {
+    it('Then the content is rendered', () => {
+      render(<ComplexContent />);
+      const button = screen.getByRole('button', { name: 'Hidden Text' });
+
       expect(button).toBeInTheDocument();
+      expect(button).toBeVisible();
     });
   });
 });
