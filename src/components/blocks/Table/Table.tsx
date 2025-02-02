@@ -2,10 +2,10 @@ import { PropsVoid } from '../../../models.ts';
 
 import VisuallyHidden from '../../elements/VisuallyHidden/VisuallyHidden.tsx';
 
-interface TableProps extends PropsVoid {
+export interface TableProps extends PropsVoid {
   label: string;
   headers: string[];
-  data: string[][];
+  data: React.ReactNode[][];
   hideLabel?: boolean;
   direction?: 'horizontal' | 'vertical';
 }
@@ -18,7 +18,7 @@ function Table({
   hideLabel = false,
   direction = 'horizontal',
 }: TableProps) {
-  if (headers.length === 0 || data.length === 0) {
+  if (data.length === 0) {
     return <div className="SN-table__empty">No data</div>;
   }
   data.forEach((row) => {
@@ -67,9 +67,12 @@ function Table({
       </thead>
       <tbody>
         {data.map((row) => (
-          <tr key={row[0]} className="SN-table_row">
+          <tr key={String(row[0]) as string} className="SN-table_row">
             {row.map((cell, index) => (
-              <td key={`${row[0]}-${headers[index]}`} className="SN-table_data">
+              <td
+                key={`${String(row[0])}-${headers[index]}`}
+                className="SN-table_data"
+              >
                 {cell}
               </td>
             ))}
