@@ -21,18 +21,21 @@ function Table({
   if (data.length === 0) {
     return <div className="SN-table__empty">No data</div>;
   }
-  data.forEach((row) => {
-    if (row.length !== headers.length) {
-      throw new Error('Data does not match number of headers provided');
-    }
-  });
+
+  if (data.some((row) => row.length !== headers.length)) {
+    throw new Error('Data does not match number of headers provided');
+  }
+
+  const caption = (
+    <caption className="SN-table_caption">
+      {hideLabel ? <VisuallyHidden>{label}</VisuallyHidden> : label}
+    </caption>
+  );
 
   if (direction === 'vertical') {
     return (
       <table className={`${className} SN-table`}>
-        <caption className="SN-table_caption">
-          {hideLabel ? <VisuallyHidden>{label}</VisuallyHidden> : label}
-        </caption>
+        {caption}
         <tbody>
           {headers.map((header, index) => (
             <tr key={header} className="SN-table_row">
@@ -53,9 +56,7 @@ function Table({
 
   return (
     <table className={`${className} SN-table`}>
-      <caption className="SN-table_caption">
-        {hideLabel ? <VisuallyHidden>{label}</VisuallyHidden> : label}
-      </caption>
+      {caption}
       <thead>
         <tr className="SN-table_row__head">
           {headers.map((header) => (

@@ -20,7 +20,7 @@ describe('VisuallyHidden - accessibility', () => {
 });
 
 const defaultClassName = 'visually-hidden';
-describe('VisuallyHidden - custom classNames', () => {
+describe('VisuallyHidden - custom classes', () => {
   describe('When a className is provided', () => {
     it('The className is applied to the VisuallyHidden alongside the default class', () => {
       render(
@@ -46,7 +46,7 @@ describe('VisuallyHidden - custom classNames', () => {
 
 const { Default, SpanElement, DivElement, LabelElement, ComplexContent } =
   composeStories(stories);
-describe('VisuallyHidden stories', () => {
+describe('VisuallyHidden - component stories', () => {
   describe('When the VisuallyHidden is rendered with default props', () => {
     it('Then the text is still rendered', () => {
       render(<Default />);

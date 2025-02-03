@@ -19,7 +19,7 @@ describe('Button - accessibility', () => {
 });
 
 const defaultClassName = 'btn';
-describe('Button - custom classNames', () => {
+describe('Button - custom classes', () => {
   describe('When a className is provided', () => {
     it('The className is applied to the Button alongside the default class', () => {
       render(<Button onClick={() => {}} className="custom-class" />);
@@ -41,37 +41,9 @@ describe('Button - custom classNames', () => {
   });
 });
 
-describe('Given the Button component', () => {
-  describe('When the Button is clicked', () => {
-    it('Then calls given function', () => {
-      const onClick = vi.fn();
-      render(<Button onClick={onClick}>Click Me!</Button>);
-      const button = screen.getByRole('button');
-
-      button.click();
-
-      expect(onClick).toHaveBeenCalled();
-    });
-
-    it('Then does not call function if disabled', () => {
-      const onClick = vi.fn();
-      render(
-        <Button onClick={onClick} disabled>
-          Click Me!
-        </Button>
-      );
-      const button = screen.getByRole('button');
-
-      button.click();
-
-      expect(onClick).not.toHaveBeenCalled();
-    });
-  });
-});
-
 const { Default, Primary, Ghost, Danger, Success, Disabled, Submit } =
   composeStories(stories);
-describe('Button stories', () => {
+describe('Button - component stories', () => {
   it('renders Default story', () => {
     const { container } = render(Default());
     const button = screen.getByRole('button');
@@ -132,5 +104,33 @@ describe('Button stories', () => {
     expect(button).toHaveTextContent('Submit Button');
     expect(button).toHaveAttribute('type', 'submit');
     expect(container).toMatchSnapshot();
+  });
+});
+
+describe('Button - functionality', () => {
+  describe('When the Button is clicked', () => {
+    it('Then calls given function', () => {
+      const onClick = vi.fn();
+      render(<Button onClick={onClick}>Click Me!</Button>);
+      const button = screen.getByRole('button');
+
+      button.click();
+
+      expect(onClick).toHaveBeenCalled();
+    });
+
+    it('Then does not call function if disabled', () => {
+      const onClick = vi.fn();
+      render(
+        <Button onClick={onClick} disabled>
+          Click Me!
+        </Button>
+      );
+      const button = screen.getByRole('button');
+
+      button.click();
+
+      expect(onClick).not.toHaveBeenCalled();
+    });
   });
 });

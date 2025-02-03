@@ -35,7 +35,7 @@ describe('Navbar - accessibility', () => {
 });
 
 const defaultClassName = 'navbar';
-describe('Navbar - custom classNames', () => {
+describe('Navbar - custom classes', () => {
   describe('When a className is provided', () => {
     it('The className is applied to the Navbar alongside the default class', () => {
       render(<Navbar className="custom-class" />);
@@ -72,7 +72,7 @@ const {
   FullNavbar,
 } = composeStories(stories);
 
-describe('Navbar stories', () => {
+describe('Navbar - component stories', () => {
   describe('When the Navbar is created with default props', () => {
     it('Then the Navbar is rendered', () => {
       render(<Default />);

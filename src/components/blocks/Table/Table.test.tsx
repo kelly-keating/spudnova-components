@@ -38,7 +38,7 @@ describe('Table - accessibility', () => {
 });
 
 const defaultClassName = 'SN-table';
-describe('Table - custom classNames', () => {
+describe('Table - custom classes', () => {
   describe('When a className is provided', () => {
     it('The className is applied to the Table alongside the default class', () => {
       render(
@@ -96,7 +96,7 @@ describe('Table - custom classNames', () => {
 
 const { Default, Simple, Complex, NoLabel, YesLabel, Horizontal, Vertical } =
   composeStories(stories);
-describe('Table stories', () => {
+describe('Table - component stories', () => {
   describe('When no data is provided', () => {
     it('Then an empty div is rendered', () => {
       render(<Default />);
@@ -251,6 +251,42 @@ describe('Table stories', () => {
       expect(row2).toContainElement(header2);
       expect(row2).toContainElement(data1Age);
       expect(row2).toContainElement(data2Age);
+    });
+  });
+});
+
+describe('Table - functionality', () => {
+  describe('When no data is provided', () => {
+    it('Then the table is rendered with the no data message', () => {
+      render(
+        <Table
+          label="Test Table"
+          headers={['Header 1', 'Header 2']}
+          data={[]}
+        />
+      );
+      const noData = screen.getByText('No data');
+
+      expect(noData).toBeInTheDocument();
+    });
+  });
+
+  describe('When the data does not match the headers', () => {
+    it('Then an error is thrown', () => {
+      const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const expectedError = 'Data does not match number of headers provided';
+
+      expect(() =>
+        render(
+          <Table
+            label="Test Table"
+            headers={['Header 1', 'Header 2']}
+            data={[['Row 1 Data 1']]}
+          />
+        )
+      ).toThrow(expectedError);
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 });

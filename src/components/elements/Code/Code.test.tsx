@@ -18,7 +18,7 @@ describe('Code - accessibility', () => {
 });
 
 const defaultClassName = 'code-block';
-describe('Code - custom classNames', () => {
+describe('Code - custom classes', () => {
   describe('When a className is provided', () => {
     it('The className is applied to the Code alongside the default class', () => {
       render(<Code className="custom-class" />);
@@ -46,7 +46,7 @@ describe('Code - custom classNames', () => {
 
 const { Default, CodeLines, Children, ChildrenAndCodeLines } =
   composeStories(stories);
-describe('Given the Code component', () => {
+describe('Code - component stories', () => {
   describe('When no code is provided', () => {
     it('Then it renders the default code prompt', () => {
       render(<Default />);

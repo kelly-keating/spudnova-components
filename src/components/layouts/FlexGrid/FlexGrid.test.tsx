@@ -20,7 +20,7 @@ describe('FlexGrid - accessibility', () => {
 });
 
 const defaultClassName = 'flex-grid';
-describe(`FlexGrid - Custom classNames`, () => {
+describe(`FlexGrid - custom classes`, () => {
   describe('When a className is provided', () => {
     it('The className is applied to the FlexGrid container alongside the default class', () => {
       render(
@@ -50,7 +50,7 @@ describe(`FlexGrid - Custom classNames`, () => {
   });
 });
 
-describe('Given FlexGrid component', () => {
+describe('FlexGrid - component stories', () => {
   describe('When children are provided', () => {
     it('The children render inside the FlexGrid', () => {
       render(

@@ -18,7 +18,7 @@ describe('Card - accessibility', () => {
 });
 
 const defaultClassName = 'card';
-describe('Card - custom classNames', () => {
+describe('Card - custom classes', () => {
   describe('When a className is provided', () => {
     it('The className is applied to the Card alongside the default class', () => {
       render(
@@ -44,7 +44,7 @@ describe('Card - custom classNames', () => {
 
 const { Default, Header, Footer, TitleImage, FullCard, ComplexContent } =
   composeStories(stories);
-describe('Given the Card component', () => {
+describe('Card - component stories', () => {
   describe('When content is provided', () => {
     it('Then it renders the content', () => {
       render(<Default />);
