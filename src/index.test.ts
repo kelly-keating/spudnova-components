@@ -5,7 +5,7 @@ const keys = Object.keys(components) as exportName[];
 
 const documentedComponents = [
   // Blocks
-  // 'Navbar',
+  'Navbar',
   'Table',
 
   // Elements

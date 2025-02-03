@@ -1,6 +1,6 @@
 import { PropsVoid } from '../../../models.ts';
 
-interface NavbarProps extends PropsVoid {
+export interface NavbarProps extends PropsVoid {
   left?: React.ReactNode;
   right?: React.ReactNode;
   bgColor?: string;
@@ -8,6 +8,9 @@ interface NavbarProps extends PropsVoid {
   shadow?: boolean;
 }
 
+// TODO: Remove divs with no content, fix content to sides regardless of if other side is empty
+// TODO: Add support for center content
+// TODO: Add support for responsive design
 function Navbar({
   className = '',
   left,

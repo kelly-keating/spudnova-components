@@ -1,88 +1,244 @@
 import '@testing-library/jest-dom/vitest';
 import { render, screen } from '@testing-library/react';
+import { axe } from 'jest-axe';
+import { composeStories } from '@storybook/react';
 
 import Navbar from './Navbar.tsx';
+import * as stories from './Navbar.stories.tsx';
 
-describe('Navbar manual styling', () => {
-  it('sets background to new color when passed bgColor', () => {
-    render(<Navbar bgColor="red" />);
-    const navbar = screen.getByRole('navigation');
+describe('Navbar - accessibility', () => {
+  describe('When rendered in the default state', () => {
+    it('should have no accessibility violations', async () => {
+      const { container } = render(<Navbar />);
+      const results = await axe(container);
 
-    expect(navbar).toHaveStyle({ 'background-color': 'rgb(255, 0, 0)' });
+      expect(results).toHaveNoViolations();
+    });
   });
 
-  it('sets text to new color when passed color', () => {
-    render(<Navbar color="blue" />);
-    const navbar = screen.getByRole('navigation');
+  describe('When rendered with custom content', () => {
+    it('should have no accessibility violations', async () => {
+      const { container } = render(
+        <Navbar
+          left={<p>Left</p>}
+          right={<p>Right</p>}
+          bgColor="blue"
+          color="red"
+          shadow
+        />
+      );
+      const results = await axe(container);
 
-    expect(navbar).toHaveStyle({ color: 'rgb(0, 0, 255)' });
-  });
-});
-
-describe('Shadow on Navbar', () => {
-  it('adds a shadow when shadow is set to true', () => {
-    render(<Navbar shadow />);
-    const navbar = screen.getByRole('navigation');
-
-    expect(navbar).toHaveClass('navbar-shadow');
-  });
-
-  it('does not add a shadow when shadow is set to false', () => {
-    render(<Navbar shadow={false} />);
-    const navbar = screen.getByRole('navigation');
-
-    expect(navbar).not.toHaveClass('navbar-shadow');
-  });
-
-  it('does not add a shadow by default', () => {
-    render(<Navbar />);
-    const navbar = screen.getByRole('navigation');
-
-    expect(navbar).not.toHaveClass('navbar-shadow');
+      expect(results).toHaveNoViolations();
+    });
   });
 });
 
-describe('Navbar left and right content', () => {
-  it('renders left content', () => {
-    render(<Navbar left={<p>Left</p>} />);
-    const left = screen.getByText('Left');
+const defaultClassName = 'navbar';
+describe('Navbar - custom classNames', () => {
+  describe('When a className is provided', () => {
+    it('The className is applied to the Navbar alongside the default class', () => {
+      render(<Navbar className="custom-class" />);
 
-    expect(left).toBeInTheDocument();
+      const navbar = screen.getByRole('navigation');
+      expect(navbar).toHaveClass(defaultClassName);
+      expect(navbar).toHaveClass('custom-class');
+    });
   });
 
-  it('renders right content', () => {
-    render(<Navbar right={<p>Right</p>} />);
-    const right = screen.getByText('Right');
+  describe('When no className is provided', () => {
+    it('Then only the default class is applied', () => {
+      render(<Navbar />);
 
-    expect(right).toBeInTheDocument();
+      const navbar = screen.getByRole('navigation');
+      expect(navbar).toHaveClass(defaultClassName);
+      expect(navbar).not.toHaveClass('custom-class');
+    });
+  });
+});
+
+const {
+  Default,
+  LeftItems,
+  LeftItemsComplex,
+  RightItems,
+  RightItemsComplex,
+  LeftAndRightItems,
+  LeftAndRightItemsComplex,
+  BackgroundColor,
+  TextColor,
+  ShadowYes,
+  ShadowNo,
+  FullNavbar,
+} = composeStories(stories);
+
+describe('Navbar stories', () => {
+  describe('When the Navbar is created with default props', () => {
+    it('Then the Navbar is rendered', () => {
+      render(<Default />);
+      const navbar = screen.getByRole('navigation');
+
+      expect(navbar).toBeInTheDocument();
+      expect(navbar).toBeVisible();
+    });
+
+    it('Then the Navbar has the default classes', () => {
+      render(<Default />);
+      const navbar = screen.getByRole('navigation');
+
+      expect(navbar).toHaveClass('navbar');
+      expect(navbar).not.toHaveClass('navbar-shadow');
+    });
   });
 
-  it('renders both left and right content', () => {
-    render(<Navbar left={<p>Left</p>} right={<p>Right</p>} />);
-    const left = screen.getByText('Left');
-    const right = screen.getByText('Right');
+  describe('When the Navbar is created with left items', () => {
+    it('Then simple items appear in the left div', () => {
+      render(<LeftItems />);
+      const navbar = screen.getByRole('navigation');
+      const leftContainer = screen.getByText('Left Items');
 
-    expect(left).toBeInTheDocument();
-    expect(right).toBeInTheDocument();
+      expect(leftContainer).toBeInTheDocument();
+      expect(leftContainer).toHaveClass('navbar_left');
+      expect(navbar).toContainElement(leftContainer);
+    });
+
+    it('Then complex items appear in the left div', () => {
+      render(<LeftItemsComplex />);
+      const navbar = screen.getByRole('navigation');
+      const leftContainer = screen.getByText('Left Item 1').parentElement
+        ?.parentElement as HTMLElement;
+
+      expect(leftContainer).toBeInTheDocument();
+      expect(leftContainer).toHaveClass('navbar_left');
+
+      expect(navbar).toContainElement(leftContainer);
+    });
+
+    it('Then the right div is still rendered', () => {
+      render(<LeftItems />);
+      const navbar = screen.getByRole('navigation');
+
+      const divs = navbar.querySelectorAll('div');
+      expect(divs).toHaveLength(2);
+    });
   });
 
-  it('renders left content first and right content second', () => {
-    render(<Navbar left={<p>Left</p>} right={<p>Right</p>} />);
-    const nav = screen.getByRole('navigation');
-    const left = nav.querySelector('div:first-child');
-    const right = nav.querySelector('div:last-child');
+  describe('When the Navbar is created with right items', () => {
+    it('Then simple items appear in the right div', () => {
+      render(<RightItems />);
+      const navbar = screen.getByRole('navigation');
+      const rightContainer = screen.getByText('Right Items');
 
-    expect(left).toHaveTextContent('Left');
-    expect(right).toHaveTextContent('Right');
+      expect(rightContainer).toBeInTheDocument();
+      expect(rightContainer).toHaveClass('navbar_right');
+      expect(navbar).toContainElement(rightContainer);
+    });
+
+    it('Then complex items appear in the right div', () => {
+      render(<RightItemsComplex />);
+      const navbar = screen.getByRole('navigation');
+      const rightContainer = screen.getByText('Right Item 1').parentElement
+        ?.parentElement as HTMLElement;
+
+      expect(rightContainer).toBeInTheDocument();
+      expect(rightContainer).toHaveClass('navbar_right');
+
+      expect(navbar).toContainElement(rightContainer);
+    });
+
+    it('Then the left div is still rendered', () => {
+      render(<RightItems />);
+      const navbar = screen.getByRole('navigation');
+
+      const divs = navbar.querySelectorAll('div');
+      expect(divs).toHaveLength(2);
+    });
   });
 
-  it('renders right content second even when there is no left content', () => {
-    render(<Navbar right={<p>Right</p>} />);
-    const nav = screen.getByRole('navigation');
-    const left = nav.querySelector('div:first-child');
-    const right = nav.querySelector('div:last-child');
+  describe('When the Navbar is created with left and right items', () => {
+    it('Then simple items appear in separate divs', () => {
+      render(<LeftAndRightItems />);
+      const navbar = screen.getByRole('navigation');
+      const leftContainer = screen.getByText('Left Items');
+      const rightContainer = screen.getByText('Right Items');
 
-    expect(left).not.toHaveTextContent('Right');
-    expect(right).toHaveTextContent('Right');
+      expect(leftContainer).toBeInTheDocument();
+      expect(leftContainer).toHaveClass('navbar_left');
+      expect(rightContainer).toBeInTheDocument();
+      expect(rightContainer).toHaveClass('navbar_right');
+
+      expect(navbar).toContainElement(leftContainer);
+      expect(navbar).toContainElement(rightContainer);
+      expect(leftContainer).not.toBe(rightContainer);
+    });
+
+    it('Then complex items appear in the left and right divs', () => {
+      render(<LeftAndRightItemsComplex />);
+      const navbar = screen.getByRole('navigation');
+      const leftContainer = screen.getByText('Left Item 1').parentElement
+        ?.parentElement as HTMLElement;
+      const rightContainer = screen.getByText('Right Item 1').parentElement
+        ?.parentElement as HTMLElement;
+
+      expect(leftContainer).toBeInTheDocument();
+      expect(leftContainer).toHaveClass('navbar_left');
+      expect(rightContainer).toBeInTheDocument();
+      expect(rightContainer).toHaveClass('navbar_right');
+
+      expect(navbar).toContainElement(leftContainer);
+      expect(navbar).toContainElement(rightContainer);
+      expect(leftContainer).not.toBe(rightContainer);
+    });
+  });
+
+  describe('When the Navbar is provided a custom background color', () => {
+    it('Then the background color style is applied', () => {
+      render(<BackgroundColor />);
+      const navbar = screen.getByRole('navigation');
+
+      expect(navbar).toHaveStyle({ 'background-color': 'rgb(0, 0, 255)' });
+    });
+  });
+
+  describe('When the Navbar is provided a custom text color', () => {
+    it('Then the color style is applied', () => {
+      render(<TextColor />);
+      const navbar = screen.getByRole('navigation');
+
+      expect(navbar).toHaveStyle({ color: 'rgb(255, 0, 0)' });
+    });
+  });
+
+  describe('When the Navbar is provided a shadow prop', () => {
+    it('Then a true prop applies a shadow class', () => {
+      render(<ShadowYes />);
+      const navbar = screen.getByRole('navigation');
+
+      expect(navbar).toHaveClass('navbar-shadow');
+    });
+
+    it('Then a false prop does not apply a shadow class', () => {
+      render(<ShadowNo />);
+      const navbar = screen.getByRole('navigation');
+
+      expect(navbar).not.toHaveClass('navbar-shadow');
+    });
+  });
+
+  describe('When the Navbar is provided all props', () => {
+    it('Then all are applied', () => {
+      render(<FullNavbar />);
+      const navbar = screen.getByRole('navigation');
+
+      expect(navbar).toHaveStyle({ 'background-color': 'rgb(173, 216, 230)' });
+      expect(navbar).toHaveStyle({ color: 'rgb(51, 51, 51)' });
+      expect(navbar).toHaveClass('navbar-shadow');
+
+      const leftContainer = screen.getByText('Left Items');
+      const rightContainer = screen.getByText('Right Items');
+
+      expect(navbar).toContainElement(leftContainer);
+      expect(navbar).toContainElement(rightContainer);
+    });
   });
 });
