@@ -77,13 +77,17 @@ LeftAndRightItemsComplex.args = {
 // Navbar with background color
 export const BackgroundColor = Template.bind({});
 BackgroundColor.args = {
-  bgColor: 'blue',
+  bgColor: 'gold',
+  left: 'Left Items',
+  right: 'Right Items',
 };
 
 // Navbar with text color
 export const TextColor = Template.bind({});
 TextColor.args = {
-  color: 'red',
+  color: 'purple',
+  left: 'Left Items',
+  right: 'Right Items',
 };
 
 // Navbar with shadow

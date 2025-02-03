@@ -196,7 +196,7 @@ describe('Navbar - component stories', () => {
       render(<BackgroundColor />);
       const navbar = screen.getByRole('navigation');
 
-      expect(navbar).toHaveStyle({ 'background-color': 'rgb(0, 0, 255)' });
+      expect(navbar).toHaveStyle({ 'background-color': 'rgb(255, 215, 0)' });
     });
   });
 
@@ -205,7 +205,7 @@ describe('Navbar - component stories', () => {
       render(<TextColor />);
       const navbar = screen.getByRole('navigation');
 
-      expect(navbar).toHaveStyle({ color: 'rgb(255, 0, 0)' });
+      expect(navbar).toHaveStyle({ color: 'rgb(128, 0, 128)' });
     });
   });
 
